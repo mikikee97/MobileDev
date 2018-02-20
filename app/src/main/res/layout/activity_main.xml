@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/lightBeige"
-    tools:context="com.beekee.mykid.MainActivity">
+    tools:context="com.example.asus.mykid.MainActivity">
 
 
+    <TextView
+        android:id="@+id/activityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/activityName"
+        android:textSize="24sp" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/activityNaEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/activityText"
+        android:layout_below="@+id/activityText"
+        android:ems="10"
+        android:inputType="none"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/activityNaEdit"
+        android:layout_below="@+id/activityNaEdit"
+        android:layout_marginTop="20dp"
+        android:text="@string/location"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/locationEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/activityNaEdit"
+        android:layout_alignStart="@+id/locationText"
+        android:layout_below="@+id/locationText"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/reporterNaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/locationEdit"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:text="@string/reporterName"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/reporterNaEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/timeEdit"
+        android:layout_alignStart="@+id/reporterNaText"
+        android:layout_below="@+id/reporterNaText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/nextBtn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/locationEdit"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:text="@string/next"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/nextBtn1"
+        android:layout_alignBottom="@+id/nextBtn1"
+        android:layout_alignStart="@+id/reporterNaEdit"
+        android:layout_marginStart="18dp"
+        android:onClick="dialogEvent"
+        android:text="@string/back"
+        android:textSize="24sp" />
+
+</RelativeLayout>
