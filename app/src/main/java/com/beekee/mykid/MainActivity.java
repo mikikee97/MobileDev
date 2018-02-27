@@ -1,162 +1,82 @@
-package com.example.asus.mykid;
+package com.beekee.mykid;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.TimePicker;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ArrayAdapter;
 
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Locale;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
-    private Button btnBack, btnDate, btnTime, btnFinish2;
-    private EditText edtActivityNa, edtReporterNa, edtDate, edtTime;
-    private int day, month, year, hour, minute;
+public class MainActivity extends AppCompatActivity {
+
+    private FloatingActionButton addActivity;
+    private InfoSharedPreference sharedPreference;
+    private ArrayList<Details> detailsList;
+    private Gson gson;
+    private ListView detailListview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(ResourcesCompat.getColor(getResources(),R.color.darkOrange,null)));
+        gson = new Gson();
+        bar.setTitle("Activities");
+        sharedPreference = new InfoSharedPreference(getApplicationContext());
+        addActivity =  (FloatingActionButton) findViewById(R.id.add_activity_btn);
+        detailListview = (ListView) findViewById(R.id.list);
 
-        //set the reference to widget
-        btnFinish2 = (Button) findViewById(R.id.finishBtn2);
-        btnDate = (Button) findViewById(R.id.dateBtn);
-        btnTime = (Button) findViewById(R.id.timeBtn);
-        edtActivityNa = (EditText)findViewById(R.id.activityNaEdit);
-        edtReporterNa = (EditText) findViewById(R.id.reporterNaEdit);
-        edtDate = (EditText) findViewById(R.id.dateText);
-        edtTime = (EditText) findViewById(R.id.timeText);
+        getDetailListFromSharedPreference();
 
-        btnDate.setOnClickListener(this);
-        btnTime.setOnClickListener(this);
+        //getDetailListFromSharedPreference();
+        //set adapter for listview and visible it
+        final ListViewAdapter adapter = new ListViewAdapter(MainActivity.this, R.layout.detail_item_listview, detailsList);
+        detailListview.setAdapter(adapter);
 
-        //register the event
-        btnFinish2.setOnClickListener(new View.OnClickListener() {
+
+        detailListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v){
-                /*
-                if((edtActivityNa.getText().toString().trim().equals("")) && (edtDate.getText().toString().trim().equals(""))
-                        && (edtReporterNa.getText().toString().trim().equals(""))){
-                    Toast.makeText(getApplicationContext(), "Activity Name, Activity Date and Reporter Name is empty",
-                            Toast.LENGTH_SHORT).show();
-                }
-                if((edtActivityNa.getText().toString().trim().equals("")) && (edtDate.getText().toString().trim().equals(""))){
-                    Toast.makeText(getApplicationContext(), "Activity Name and Activity Date is empty",
-                            Toast.LENGTH_SHORT).show();
-                }
-                if((edtActivityNa.getText().toString().trim().equals("")) && (edtReporterNa.getText().toString().trim().equals(""))){
-                    Toast.makeText(getApplicationContext(), "Activity Name and Reporter Name is empty",
-                            Toast.LENGTH_SHORT).show();
-                }
-                if((edtDate.getText().toString().trim().equals("")) && (edtReporterNa.getText().toString().trim().equals(""))){
-                    Toast.makeText(getApplicationContext(), "Activity Date and Reporter Name is empty",
-                            Toast.LENGTH_SHORT).show();
-                }
-                */
-                if(edtActivityNa.getText().toString().trim().equals("")){
-                    Toast.makeText(getApplicationContext(), "Activity Name is empty", Toast.LENGTH_SHORT).show();
-                }
-                if(edtDate.getText().toString().trim().equals("")){
-                    Toast.makeText(getApplicationContext(), "Activity Date is empty", Toast.LENGTH_SHORT).show();
-                }
-                if((edtReporterNa.getText().toString().trim().equals(""))){
-                    Toast.makeText(getApplicationContext(), "Reporter Name is empty", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                   /* Intent i = new Intent(MainActivity.this,Main2Activity.class);
-                    startActivity(i);
-                    */
-                    AlertDialog.Builder altDial = new AlertDialog.Builder(MainActivity.this);
-                    altDial.setMessage("Do you want to add this activity?").setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            });
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    AlertDialog alert = altDial.create();
-                    alert.setTitle("Save Confirmation");
-                    alert.show();
-                }
+                detailListview.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, FullDetailActivity.class);
+                intent.putExtra("detailId",id);
             }
         });
-    }//end onCreate
 
-    public void dialogEvent(View v){
-        btnBack = (Button) findViewById(R.id.backBtn);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder altDial = new AlertDialog.Builder(MainActivity.this);
-                altDial.setMessage("Do you want to exit?").setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        });
-
-                AlertDialog alert = altDial.create();
-                alert.setTitle("Back Confirmation");
-                alert.show();
-            }
-        });
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == btnDate){
-            final Calendar c = Calendar.getInstance();
-            day = c.get(Calendar.DAY_OF_MONTH);
-            month = c.get(Calendar.MONTH);
-            year = c.get(Calendar.YEAR);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int yr, int monthOfYear, int dayOfMonth) {
-                    edtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + yr);
-                }
-            }
-            ,day, month, year);
-            datePickerDialog.show();
-        }
 
-        if (v == btnTime){
-            final Calendar c = Calendar.getInstance();
-            hour = c.get(Calendar.HOUR_OF_DAY);
-            minute= c.get(Calendar.MINUTE);
+    public void add_clicked(View v){
 
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    edtTime.setText(hourOfDay + ":" + minute);
-                }
-            }
-            ,hour, minute, true);
-            timePickerDialog.show();
+        Intent intent = new Intent(this,InfoActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void getDetailListFromSharedPreference() {
+        //retrieve data from shared preference
+        String jsonScore = sharedPreference.getDetailList();
+        Type type = new TypeToken<List<Details>>() {
+        }.getType();
+        detailsList = gson.fromJson(jsonScore, type);
+
+        if (detailsList == null) {
+            detailsList = new ArrayList<>();
         }
     }
-}//end class
+}
