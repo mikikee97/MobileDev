@@ -21,20 +21,22 @@ public class ListViewAdapter extends ArrayAdapter<Details> {
 
     private Activity activity;
 
+
     public ListViewAdapter(@NonNull Activity activity, @LayoutRes int resource, @NonNull List<Details> details) {
         super(activity, resource,details);
         this.activity = activity;
     }
 
     private static class ViewHolder {
-        private TextView listviewActivityName;
-        private TextView listviewLocation;
-        private TextView listviewReporterName;
+        private TextView listviewActivityName,listviewLocation,listviewReporterName,listviewTime,listviewDate;
+
 
         public ViewHolder(View v) {
             listviewActivityName = (TextView) v.findViewById(R.id.listview_activity_name);
-            listviewLocation = (TextView) v.findViewById(R.id.listview_location);
-            listviewReporterName = (TextView) v.findViewById(R.id.listview_reporter_name);
+           // listviewLocation = (TextView) v.findViewById(R.id.listview_location);
+           // listviewReporterName = (TextView) v.findViewById(R.id.listview_reporter_name);
+            listviewTime = (TextView) v.findViewById(R.id.listview_time);
+            listviewDate = (TextView) v.findViewById(R.id.listview_date);
         }
     }
 
@@ -60,8 +62,10 @@ public class ListViewAdapter extends ArrayAdapter<Details> {
         Details detail = getItem(position);
 
         holder.listviewActivityName.setText(detail.getmActivityName());
-        holder.listviewLocation.setText(detail.getmLocation());
-        holder.listviewReporterName.setText(detail.getmReporterName());
+       // holder.listviewLocation.setText(detail.getmLocation());
+      //  holder.listviewReporterName.setText(detail.getmReporterName());
+        holder.listviewTime.setText(detail.getmTime());
+        holder.listviewDate.setText(detail.getmDate());
 
         return convertView;
     }

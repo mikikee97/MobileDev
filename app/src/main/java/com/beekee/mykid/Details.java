@@ -8,12 +8,15 @@ import java.util.ArrayList;
 
 public class Details {
 
-    private String mActivityName,mLocation,mReporterName;
+    private String mActivityName,mLocation,mReporterName,mTime,mDate;
 
-    public Details(String mActivityName, String mLocation, String mReporterName) {
+    public Details(String mActivityName, String mLocation, String mReporterName,String mTime,String mDate) {
         this.mActivityName = mActivityName;
         this.mLocation = mLocation;
         this.mReporterName = mReporterName;
+        this.mTime = mTime;
+        this.mDate = mDate;
+
     }
 
     public String getmActivityName() {
@@ -27,6 +30,12 @@ public class Details {
     public String getmReporterName() {
         return mReporterName;
     }
+
+    public String getmTime() {
+        return mTime;
+    }
+
+    public String getmDate() { return mDate; }
 
 
 
