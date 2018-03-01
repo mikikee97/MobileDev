@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beekee.mykid.InfoActivity"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@color/lightBeige"
+
+    >
+
+    <EditText
+        android:id="@+id/editActivityName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Activity Name*" />
+
+    <EditText
+        android:id="@+id/editLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Location"
+        android:layout_below="@+id/editActivityName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/dateDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="7dp"
+        android:text="Date*"
+        android:textSize="14sp"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/editReporterName"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/pickDate"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="select date"
+        android:onClick="pickDate_clicked"
+        android:layout_alignBaseline="@+id/dateDisplay"
+        android:layout_alignBottom="@+id/dateDisplay"
+        android:layout_alignEnd="@+id/save_btn" />
+
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textSize="14sp"
+        android:paddingLeft="7dp"
+
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/pickDate"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/pickTime"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="select time"
+
+        android:onClick="pickTime_clicked"
+        android:layout_alignBaseline="@+id/Time"
+        android:layout_alignBottom="@+id/Time"
+        android:layout_alignStart="@+id/pickDate" />
+
+    <EditText
+        android:id="@+id/editReporterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Reporter Name*"
+        android:layout_below="@+id/editLocation"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:background="@color/green"
+        android:onClick="save_btn_clicked"
+        android:layout_marginEnd="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="33dp" />
+
+
+</RelativeLayout>

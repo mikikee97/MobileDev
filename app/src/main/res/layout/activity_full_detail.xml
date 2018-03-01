@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beekee.mykid.FullDetailActivity"
+    android:background="@color/lightBeige"
+    >
+
+
+    <TextView
+        android:id="@+id/detail_activityname_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity Name:"
+        android:layout_marginStart="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_above="@+id/location_text"
+        android:layout_alignStart="@+id/detail_location_textview"
+        android:textSize="15sp"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:id="@+id/detail_location_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textSize="15sp"
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/detail_activityname_textview"
+        android:layout_alignStart="@+id/detail_activityname_textview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/location_text"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/detail_location_textview"
+        android:textStyle="bold"
+        android:layout_alignStart="@+id/detail_location_textview" />
+
+    <TextView
+        android:id="@+id/detail_reportername_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reporter Name:"
+        android:textSize="15sp"
+        android:layout_below="@+id/location_text"
+        android:layout_alignStart="@+id/location_text"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/reportername_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_below="@+id/detail_reportername_textview"
+        android:textStyle="bold"
+        android:layout_alignStart="@+id/detail_reportername_textview"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/detail_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time:"
+        android:textSize="15sp"
+        android:layout_below="@+id/reportername_text"
+        android:layout_alignStart="@+id/reportername_text"
+        android:layout_marginTop="36dp" />
+
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/detail_time_text"
+        android:layout_alignStart="@+id/detail_time_text"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/detail_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="15sp"
+        android:layout_below="@+id/time_text"
+        android:layout_alignStart="@+id/time_text"
+        android:layout_marginTop="37dp" />
+
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/detail_date_text"
+        android:layout_alignStart="@+id/detail_date_text"
+        android:layout_marginTop="15dp" />
+
+
+</RelativeLayout>
